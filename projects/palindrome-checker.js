@@ -1,3 +1,4 @@
+// Checks whether a given string is a palindrome.
 function palindrome(str) {
   if (str === null) return false;
 
