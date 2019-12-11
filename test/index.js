@@ -1,6 +1,6 @@
 let assert = require("assert");
-let palindrome = require("../projects/palindrome-checker.js");
-let convertToRoman = require("../projects/roman-numeral-converter.js");
+let palindrome = require("../src/projects/palindrome-checker.js.js");
+let convertToRoman = require("../src/projects/roman-numeral-converter.js.js");
 
 // Test palindrome checker
 describe("Palindrome checker", function() {
