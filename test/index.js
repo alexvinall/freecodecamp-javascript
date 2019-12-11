@@ -1,6 +1,7 @@
 let assert = require("assert");
 let palindrome = require("../src/projects/palindrome-checker.js");
 let convertToRoman = require("../src/projects/roman-numeral-converter.js");
+let rot13 = require("../src/projects/ceasars-cipher.js");
 
 // Test palindrome checker
 describe("Palindrome checker", function() {
@@ -44,5 +45,15 @@ describe("Roman numeral converter", function() {
     assert(convertToRoman(9) === "IX");
     assert(convertToRoman(97) === "XCVII");
     assert(convertToRoman(99) === "XCIX");
+  });
+});
+
+// Test Caesar's cipher
+describe("Caesar's cipher", function() {
+  it("Correctly ciphers using ROT13", function() {
+    assert(rot13("SERR PBQR PNZC") === "FREE CODE CAMP");
+    assert(rot13("SERR CVMMN!") === "FREE PIZZA!");
+    assert(rot13("SERR YBIR?") === "FREE LOVE?");
+    assert(rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") === "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
   });
 });
