@@ -14,13 +14,4 @@ function palindrome(str) {
   return true;
 }
 
-// Tests
-let assert = require("assert");
-
-assert(palindrome("eye b0ll 3 ll0b eye"));
-assert(palindrome("eye"));
-assert(palindrome("_eye"));
-assert(palindrome("race cAr"));
-assert(!palindrome("not a palindrome"));
-assert(!palindrome("nope"));
-assert(!palindrome("almostomla"));
+module.exports = palindrome;
