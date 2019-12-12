@@ -3,6 +3,7 @@ let palindrome = require("../src/projects/palindrome-checker.js");
 let convertToRoman = require("../src/projects/roman-numeral-converter.js");
 let rot13 = require("../src/projects/ceasars-cipher.js");
 let telephoneCheck = require("../src/projects/telephone-number-validator.js");
+let checkCashRegister = require("../src/projects/cash-register.js");
 
 // Test palindrome checker
 describe("Palindrome checker", function() {
@@ -91,4 +92,37 @@ describe("Telephone number validator", function() {
     assert(!telephoneCheck("(555-555-5555"));
     assert(!telephoneCheck("(555)5(55?)-5555"));
   });
+});
+
+describe("Cash register", function() {
+  it("Correctly calculates change", function() {
+    assert.deepEqual(
+      checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]),
+      {status: "OPEN", change: [["QUARTER", 0.5]]}
+    );
+  }),
+  it("Correctly calculates change", function() {
+    assert.deepEqual(
+      checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]),
+      {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}
+    );
+  }),
+  it("Correctly calculates change", function() {
+    assert.deepEqual(
+      checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]),
+      {status: "INSUFFICIENT_FUNDS", change: []}
+    );
+  }),
+  it("Correctly calculates change", function() {
+    assert.deepEqual(
+      checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]),
+      {status: "INSUFFICIENT_FUNDS", change: []}
+    );
+  }),
+  it("Correctly calculates change", function() {
+    assert.deepEqual(
+      checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]),
+      {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}
+    );
+  })
 });
